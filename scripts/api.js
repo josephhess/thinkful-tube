@@ -3,7 +3,6 @@ const Api = (function() {
 
 const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 
-
 const fetchVideos = function(searchTerm, callback) {
   const query = {
     key: API_KEY,
