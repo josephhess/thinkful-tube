@@ -1,3 +1,5 @@
+/* global VideoList Store Api $*/
+
 const VideoList = (function(){
 
   const generateListItemHtml = function(video) {

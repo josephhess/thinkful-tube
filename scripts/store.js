@@ -5,7 +5,7 @@ const Store = (function(){
     this.videos = decoratedVideos;
   };
   return {
-    videos: videos,
-    setVideos: setVideos
+    videos,
+    setVideos
   };
 }());
