@@ -1,4 +1,6 @@
-const API_KEY = 'AIzaSyDseuhc-4nMYQWWYlT1kz_Bnt8bY9eAq2U';
+
+
+console.log(API_KEY);
 
 /*
   We want our store to hold an array of "decorated" video objects - i.e. objects that
@@ -37,6 +39,7 @@ const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 // TEST IT! Execute this function and console log the results inside the callback.
 const decorateResponse = function(response) {
   const results = response.items;
+  console.log(results);
   const decorated = [];
   results.forEach((elem) => {
     decorated.push({
@@ -52,9 +55,9 @@ const fetchVideos = function(searchTerm, callback) {
     key: API_KEY,
     q: searchTerm, 
     part: 'snippet', } 
-  $.getJSON(BASE_URL, query, callback); 
+  $.getJSON(BASE_URL, query, callback);
 };
-
+// fetchVideos('surfing',decorateResponse);
 /**
  * @function decorateResponse
  * Uses Youtube API response to create an array of "decorated" video objects as 
