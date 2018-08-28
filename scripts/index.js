@@ -2,10 +2,10 @@
 const store = (function(){
   let videos = [];
   const setVideos = (decoratedVideos) => {
-    videos = decoratedVideos;
-    decoratedVideos.forEach((video,index) => {
-      videos[index] = video;
-    });
+    this.videos = decoratedVideos;
+    // decoratedVideos.forEach((video,index) => {
+    //   videos[index] = video;
+    // });
   };
   return {
     videos: videos,
@@ -44,11 +44,11 @@ const generateVideoItemHtml = function(video) {
   `;
 };
 
-const addVideosToStore = function(videos) {
-  console.log(videos);
-  store.setVideos(videos);
-  console.log(store)
-};
+// const addVideosToStore = function(videos) {
+//   console.log(videos);
+//   store.setVideos(videos);
+//   console.log(store)
+// };
 
 const render = function() {
   const htmlElements = store.videos.map(generateVideoItemHtml);
@@ -63,7 +63,9 @@ const handleFormSubmit = function() {
     $('#search-term').val('');
     fetchVideos(query, response => {
       const decoratedVideos = decorateResponse(response);
+      console.log(decort)
       store.setVideos(decoratedVideos);
+      console.log(store);
       render();
     });
   });
