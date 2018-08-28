@@ -1,19 +1,4 @@
 
-const store = (function(){
-  let videos = [];
-  const setVideos = (decoratedVideos) => {
-    this.videos = decoratedVideos;
-    // decoratedVideos.forEach((video,index) => {
-    //   videos[index] = video;
-    // });
-  };
-  return {
-    videos: videos,
-    setVideos: setVideos
-  };
-}());
-
-const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 
 const decorateResponse = function(response) {
   return response.items.map(item => {
@@ -25,13 +10,7 @@ const decorateResponse = function(response) {
   });
 };
 
-const fetchVideos = function(searchTerm, callback) {
-  const query = {
-    key: API_KEY,
-    q: searchTerm,
-    part: 'snippet', };
-  return $.getJSON(BASE_URL, query, callback);
-};
+
 
 const generateVideoItemHtml = function(video) {
   return `
@@ -44,14 +23,14 @@ const generateVideoItemHtml = function(video) {
   `;
 };
 
-// const addVideosToStore = function(videos) {
-//   console.log(videos);
-//   store.setVideos(videos);
-//   console.log(store)
-// };
+const addVideosToStore = function(videos) {
+  console.log(videos);
+  Store.setVideos(videos);
+  console.log(Store)
+};
 
 const render = function() {
-  const htmlElements = store.videos.map(generateVideoItemHtml);
+  const htmlElements = Store.videos.map(generateVideoItemHtml);
   $('.results').html(htmlElements);
 };
 
@@ -61,11 +40,9 @@ const handleFormSubmit = function() {
 
     const query = $('#search-term').val();
     $('#search-term').val('');
-    fetchVideos(query, response => {
+    Api.fetchVideos(query, response => {
       const decoratedVideos = decorateResponse(response);
-      console.log(decort)
-      store.setVideos(decoratedVideos);
-      console.log(store);
+      Store.setVideos(decoratedVideos);
       render();
     });
   });
