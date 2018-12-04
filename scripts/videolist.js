@@ -15,6 +15,8 @@ const VideoList = (function(){
 
   const render = function() {
     const htmlElements = Store.videos.map(generateListItemHtml);
+    const videoCount = `Your search returned ${htmlElements.length} results`;
+    $('.count').html(videoCount);
     $('.results').html(htmlElements);
   };
 
@@ -31,7 +33,7 @@ const VideoList = (function(){
   const handleFormSubmit = function() {
     $('#js-search-form').submit(event => {
       event.preventDefault();
-  
+
       const query = $('#search-term').val();
       $('#search-term').val('');
       Api.fetchVideos(query, response => {
