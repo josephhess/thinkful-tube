@@ -7,7 +7,7 @@ const VideoList = (function(){
       <li data-id="${video.id}">
         <h3>${video.title}</h3>
         <a href="https://www.youtube.com/watch?v=${video.id}">
-        <img src="${video.thumbnail}" alt="${video.description}">
+        <img src="${video.thumbnail}" alt="${video.title} clicking on image will open video on youtube">
         </a>
       </li>
     `;
@@ -25,8 +25,7 @@ const VideoList = (function(){
       return {
         id: item.id.videoId,
         title: item.snippet.title,
-        thumbnail: item.snippet.thumbnails.medium.url,
-        description: item.snippet.description
+        thumbnail: item.snippet.thumbnails.medium.url
       };
     });
   };
